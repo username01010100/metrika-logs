@@ -17,6 +17,7 @@ use Volga\MetrikaLogs\Contracts\Request;
  *
  * @method Responses\LogListResponse    sendLogListRequest(Requests\LogListRequest $request)
  * @method Responses\CapabilityResponse    sendCapabilityRequest(Requests\CapabilityRequest $request)
+ * @method Responses\InformationResponse    sendInformationRequest(Requests\InformationRequest $request)
  *
  * @package Volga\MetrikaLogs
  */
@@ -26,6 +27,7 @@ class MetrikaClient
         'json' => [
             Requests\LogListRequest::class => Responses\LogListResponse::class,
             Requests\CapabilityRequest::class => Responses\CapabilityResponse::class,
+            Requests\InformationRequest::class => Responses\InformationResponse::class,
         ],
     ];
 
