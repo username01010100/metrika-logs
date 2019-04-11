@@ -1,0 +1,35 @@
+{
+  "name": "volga/metrika-logs",
+  "description": "Integration Laravel with Yandex.Metrika Logs API",
+  "keywords": [
+    "yandex",
+    "metrika",
+    "logs api"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Volga",
+      "email": "vtikunov@yandex.ru"
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "jms/serializer": "^1.8",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Volga\\MetrikaLogs\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Volga\\MetrikaLogs\\MetrikaLogsServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev"
+}
