@@ -14,6 +14,9 @@ use Volga\MetrikaLogs\Contracts\Request;
 
 /**
  * Class MetrikaClient
+ *
+ * @method Responses\LogListResponse    sendLogListRequest(Requests\LogListRequest $request)
+ *
  * @package Volga\MetrikaLogs
  */
 class MetrikaClient
@@ -77,6 +80,8 @@ class MetrikaClient
     }
 
     /**
+     * Магический вызов метода sendRequest
+     *
      * @param $name
      * @param $arguments
      * @return array|mixed|object
@@ -139,6 +144,8 @@ class MetrikaClient
     }
 
     /**
+     * Десериализация ответа
+     *
      * @param  Request  $request
      * @param  ResponseInterface  $response
      * @return array|mixed|object
