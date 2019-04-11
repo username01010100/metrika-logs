@@ -16,6 +16,7 @@ use Volga\MetrikaLogs\Contracts\Request;
  * Class MetrikaClient
  *
  * @method Responses\LogListResponse    sendLogListRequest(Requests\LogListRequest $request)
+ * @method Responses\CapabilityResponse    sendCapabilityRequest(Requests\CapabilityRequest $request)
  *
  * @package Volga\MetrikaLogs
  */
@@ -24,6 +25,7 @@ class MetrikaClient
     private $maps = [
         'json' => [
             Requests\LogListRequest::class => Responses\LogListResponse::class,
+            Requests\CapabilityRequest::class => Responses\CapabilityResponse::class,
         ],
     ];
 
@@ -56,7 +58,7 @@ class MetrikaClient
     /**
      * Установка OAuth токена
      *
-     * @param string $token
+     * @param  string  $token
      * @return MetrikaClient
      */
     public function setToken(string $token): MetrikaClient
@@ -69,7 +71,7 @@ class MetrikaClient
     /**
      * Установка клиента HTTP
      *
-     * @param GuzzleClient $httpClient
+     * @param  GuzzleClient  $httpClient
      * @return MetrikaClient
      */
     public function setHttpClient(GuzzleClient $httpClient): MetrikaClient
@@ -106,7 +108,7 @@ class MetrikaClient
     public function sendRequest(Request $request)
     {
 
-        try{
+        try {
             $response = $this->http->request(
                 $request->getMethod(),
                 $request->getAddress(),
@@ -123,7 +125,7 @@ class MetrikaClient
     /**
      * Извлечение параметров запроса
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     private function extractOptions(Request $request): array
@@ -158,7 +160,7 @@ class MetrikaClient
 
         foreach ($this->maps as $format => $map) {
             if (array_key_exists($class, $map)) {
-                return $this->serializer->deserialize((string)$response->getBody(), $map[$class], $format);
+                return $this->serializer->deserialize((string) $response->getBody(), $map[$class], $format);
             }
         }
 
