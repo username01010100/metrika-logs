@@ -22,6 +22,7 @@ use Volga\MetrikaLogs\Contracts\Request;
  * @method Responses\InformationResponse    sendInformationRequest(Requests\InformationRequest $request)
  * @method Responses\DownloadResponse|Stream    sendDownloadRequest(Requests\DownloadRequest $request)
  * @method Responses\CleanResponse    sendCleanRequest(Requests\CleanRequest $request)
+ * @method Responses\CancelResponse    sendCancelRequest(Requests\CancelRequest $request)
  *
  * @package Volga\MetrikaLogs
  */
@@ -34,6 +35,7 @@ class MetrikaClient
             Requests\InformationRequest::class => Responses\InformationResponse::class,
             Requests\DownloadRequest::class => Responses\DownloadResponse::class,
             Requests\CleanRequest::class => Responses\CleanResponse::class,
+            Requests\CancelRequest::class => Responses\CancelResponse::class,
         ],
     ];
 
