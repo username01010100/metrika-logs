@@ -1,6 +1,6 @@
 {
   "name": "volga/metrika-logs",
-  "description": "Integration Laravel with Yandex.Metrika Logs API",
+  "description": "Logs API Яндекс.Метрики",
   "keywords": [
     "yandex",
     "metrika",
