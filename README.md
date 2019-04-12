@@ -9,7 +9,7 @@ Logs API позволяет получать неагрегированные д
 > Минимальные требования — PHP 7.1+.
 
 ```bash
-composer require Volga/metrika-logs
+composer require volga/metrika-logs
 ```
 
 ### Laravel 5.1+
