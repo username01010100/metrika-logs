@@ -21,6 +21,7 @@ use Volga\MetrikaLogs\Contracts\Request;
  * @method Responses\CapabilityResponse    sendCapabilityRequest(Requests\CapabilityRequest $request)
  * @method Responses\InformationResponse    sendInformationRequest(Requests\InformationRequest $request)
  * @method Responses\DownloadResponse|Stream    sendDownloadRequest(Requests\DownloadRequest $request)
+ * @method Responses\CleanResponse    sendCleanRequest(Requests\CleanRequest $request)
  *
  * @package Volga\MetrikaLogs
  */
@@ -32,6 +33,7 @@ class MetrikaClient
             Requests\CapabilityRequest::class => Responses\CapabilityResponse::class,
             Requests\InformationRequest::class => Responses\InformationResponse::class,
             Requests\DownloadRequest::class => Responses\DownloadResponse::class,
+            Requests\CleanRequest::class => Responses\CleanResponse::class,
         ],
     ];
 
@@ -68,7 +70,7 @@ class MetrikaClient
     /**
      * Установка OAuth токена
      *
-     * @param string $token
+     * @param  string  $token
      * @return MetrikaClient
      */
     public function setToken(string $token): MetrikaClient
@@ -81,7 +83,7 @@ class MetrikaClient
     /**
      * Установка клиента HTTP
      *
-     * @param GuzzleClient $httpClient
+     * @param  GuzzleClient  $httpClient
      * @return MetrikaClient
      */
     public function setHttpClient(GuzzleClient $httpClient): MetrikaClient
@@ -111,7 +113,7 @@ class MetrikaClient
     /**
      * Отправка запроса
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return array|mixed|object
      * @throws \GuzzleHttp\Exception\GuzzleException|\Exception
      */
@@ -135,7 +137,7 @@ class MetrikaClient
     /**
      * Извлечение параметров запроса
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return array
      */
     private function extractOptions(Request $request): array
@@ -159,8 +161,8 @@ class MetrikaClient
     /**
      * Десериализация ответа
      *
-     * @param Request $request
-     * @param ResponseInterface $response
+     * @param  Request  $request
+     * @param  ResponseInterface  $response
      * @return array|mixed|object
      * @throws \Exception
      */
@@ -178,7 +180,7 @@ class MetrikaClient
                 }
 
                 return $this->serializer->deserialize(
-                    (string)$response->getBody()->getContents(),
+                    (string) $response->getBody()->getContents(),
                     $map[$class],
                     $format
                 );
