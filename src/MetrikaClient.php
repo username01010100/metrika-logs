@@ -6,6 +6,7 @@ namespace Volga\MetrikaLogs;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\Stream;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use Psr\Http\Message\ResponseInterface;
@@ -19,7 +20,7 @@ use Volga\MetrikaLogs\Contracts\Request;
  * @method Responses\LogListResponse    sendLogListRequest(Requests\LogListRequest $request)
  * @method Responses\CapabilityResponse    sendCapabilityRequest(Requests\CapabilityRequest $request)
  * @method Responses\InformationResponse    sendInformationRequest(Requests\InformationRequest $request)
- * @method Responses\DownloadResponse    sendDownloadRequest(Requests\DownloadRequest $request)
+ * @method Responses\DownloadResponse|Stream    sendDownloadRequest(Requests\DownloadRequest $request)
  *
  * @package Volga\MetrikaLogs
  */
