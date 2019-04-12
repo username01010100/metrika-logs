@@ -7,6 +7,11 @@ namespace Volga\MetrikaLogs\Contracts;
 use Psr\Http\Message\ResponseInterface;
 use Volga\MetrikaLogs\MetrikaClient;
 
+/**
+ * Interface DeserializeResponseInterface
+ *
+ * @package Volga\MetrikaLogs\Contracts
+ */
 interface DeserializeResponseInterface
 {
     /**

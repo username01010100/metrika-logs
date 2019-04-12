@@ -7,6 +7,11 @@ namespace Volga\MetrikaLogs\Requests;
 use Volga\MetrikaLogs\Contracts\ParamRequest;
 use Volga\MetrikaLogs\Requests\Concerns\RequestCore;
 
+/**
+ * Class CapabilityRequest
+ *
+ * @package Volga\MetrikaLogs\Requests
+ */
 class CapabilityRequest extends RequestCore implements ParamRequest
 {
     protected const METHOD = 'GET';

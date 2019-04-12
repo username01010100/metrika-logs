@@ -6,6 +6,11 @@ namespace Volga\MetrikaLogs\Responses\Concerns;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Trait ErrorResponse
+ *
+ * @package Volga\MetrikaLogs\Responses\Concerns
+ */
 trait ErrorResponse
 {
     /**

@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Volga\MetrikaLogs\Contracts;
 
+/**
+ * Interface ParamRequest
+ *
+ * @package Volga\MetrikaLogs\Contracts
+ */
 interface ParamRequest extends Request
 {
     /**

@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Volga\MetrikaLogs\Requests\Concerns;
 
+/**
+ * Class RequestCore
+ *
+ * @package Volga\MetrikaLogs\Requests\Concerns
+ */
 abstract class RequestCore
 {
     protected const METHOD = '';

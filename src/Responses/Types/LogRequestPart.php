@@ -6,6 +6,11 @@ namespace Volga\MetrikaLogs\Responses\Types;
 
 use JMS\Serializer\Annotation as JMS;
 
+/**
+ * Class LogRequestPart
+ *
+ * @package Volga\MetrikaLogs\Responses\Types
+ */
 class LogRequestPart
 {
     /**
