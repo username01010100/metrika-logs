@@ -4,7 +4,11 @@
   "keywords": [
     "yandex",
     "metrika",
-    "logs api"
+    "logs api",
+    "laravel",
+    "php",
+    "яндекс",
+    "метрика"
   ],
   "type": "library",
   "license": "MIT",
