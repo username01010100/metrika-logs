@@ -14,9 +14,20 @@ Logs API позволяет получать неагрегированные д
 composer require volga/metrika-logs
 ```
 
-### Laravel 5.1+
+### Laravel
 ```php
 $client = new \Volga\MetrikaLogs\MetrikaClient('token');
+```
+
+### Laravel <5.5
+Добавьте в `config/app.php`:
+
+```php
+'providers' => [
+        ...
+        \Volga\MetrikaLogs\MetrikaLogsServiceProvider::class,
+        ...
+ ]
 ```
 
 ### Иные фреймворки/без фреймворка
