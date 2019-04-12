@@ -1,12 +1,14 @@
 # Logs API Яндекс.Метрики
 
+[![Total Downloads](https://poser.pugx.org/volga/metrika-logs/downloads)](https://packagist.org/packages/volga/metrika-logs)  [![Latest Stable Version](https://poser.pugx.org/volga/metrika-logs/version)](https://packagist.org/packages/volga/metrika-logs)  [![License](https://poser.pugx.org/volga/metrika-logs/license)](https://packagist.org/packages/volga/metrika-logs)
+
 Logs API позволяет получать неагрегированные данные, собираемые Яндекс.Метрикой. Данный API предназначен для пользователей сервиса, которые хотят самостоятельно обрабатывать статистические данные и использовать их для решения уникальных аналитических задач.
 
 Для использования данного API необходима авторизация с помощью [авторизационного токена](https://tech.yandex.ru/metrika/doc/api2/intro/authorization-docpage/) . 
 
 ## Установка
 
-> Минимальные требования — PHP 7.1+.
+> Минимальные требования — PHP 7.2+.
 
 ```bash
 composer require volga/metrika-logs
