@@ -9,6 +9,7 @@ use GuzzleHttp\Exception\ClientException;
 use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use Psr\Http\Message\ResponseInterface;
+use Volga\MetrikaLogs\Contracts\DeserializeResponseInterface;
 use Volga\MetrikaLogs\Contracts\ParamRequest;
 use Volga\MetrikaLogs\Contracts\Request;
 
@@ -18,6 +19,7 @@ use Volga\MetrikaLogs\Contracts\Request;
  * @method Responses\LogListResponse    sendLogListRequest(Requests\LogListRequest $request)
  * @method Responses\CapabilityResponse    sendCapabilityRequest(Requests\CapabilityRequest $request)
  * @method Responses\InformationResponse    sendInformationRequest(Requests\InformationRequest $request)
+ * @method Responses\DownloadResponse    sendDownloadRequest(Requests\DownloadRequest $request)
  *
  * @package Volga\MetrikaLogs
  */
@@ -28,6 +30,7 @@ class MetrikaClient
             Requests\LogListRequest::class => Responses\LogListResponse::class,
             Requests\CapabilityRequest::class => Responses\CapabilityResponse::class,
             Requests\InformationRequest::class => Responses\InformationResponse::class,
+            Requests\DownloadRequest::class => Responses\DownloadResponse::class,
         ],
     ];
 
@@ -45,7 +48,11 @@ class MetrikaClient
      */
     private $http;
 
-    /** @var Serializer */
+    /**
+     * Сериалайзер
+     *
+     * @var Serializer
+     */
     private $serializer;
 
     public function __construct(string $token)
@@ -60,7 +67,7 @@ class MetrikaClient
     /**
      * Установка OAuth токена
      *
-     * @param  string  $token
+     * @param string $token
      * @return MetrikaClient
      */
     public function setToken(string $token): MetrikaClient
@@ -73,7 +80,7 @@ class MetrikaClient
     /**
      * Установка клиента HTTP
      *
-     * @param  GuzzleClient  $httpClient
+     * @param GuzzleClient $httpClient
      * @return MetrikaClient
      */
     public function setHttpClient(GuzzleClient $httpClient): MetrikaClient
@@ -103,7 +110,7 @@ class MetrikaClient
     /**
      * Отправка запроса
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array|mixed|object
      * @throws \GuzzleHttp\Exception\GuzzleException|\Exception
      */
@@ -127,7 +134,7 @@ class MetrikaClient
     /**
      * Извлечение параметров запроса
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array
      */
     private function extractOptions(Request $request): array
@@ -136,6 +143,7 @@ class MetrikaClient
             'headers' => [
                 'Authorization' => "OAuth {$this->token}",
             ],
+            'stream' => true,
         ];
 
         if ($request instanceof ParamRequest) {
@@ -150,8 +158,8 @@ class MetrikaClient
     /**
      * Десериализация ответа
      *
-     * @param  Request  $request
-     * @param  ResponseInterface  $response
+     * @param Request $request
+     * @param ResponseInterface $response
      * @return array|mixed|object
      * @throws \Exception
      */
@@ -161,11 +169,32 @@ class MetrikaClient
         $class = \get_class($request);
 
         foreach ($this->maps as $format => $map) {
+
             if (array_key_exists($class, $map)) {
-                return $this->serializer->deserialize((string) $response->getBody(), $map[$class], $format);
+
+                if ((new \ReflectionClass($map[$class]))->implementsInterface(DeserializeResponseInterface::class)) {
+                    return call_user_func([$map[$class], 'deserialize'], $this, $response, $format);
+                }
+
+                return $this->serializer->deserialize(
+                    (string)$response->getBody()->getContents(),
+                    $map[$class],
+                    $format
+                );
             }
+
         }
 
         throw new \Exception("Class [$class] not mapped.");
+    }
+
+    /**
+     * Сериалайзер
+     *
+     * @return Serializer
+     */
+    public function getSerializer(): Serializer
+    {
+        return $this->serializer;
     }
 }
