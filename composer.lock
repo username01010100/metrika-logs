@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "doctrine/annotations",
-            "version": "2.0.x-dev",
+            "version": "1.7.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "94f40ad7ecbc6931958faa8a57c48dce5da2b468"
+                "reference": "3f3525529066549f3991dd33192e063c2e89b530"
             },
             "dist": {
                 "type": "zip",
