@@ -12,7 +12,7 @@ class MetrikaLogsServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        AnnotationRegistry::registerLoader('class_exists');
+        // AnnotationRegistry::registerLoader('class_exists');
     }
 
     public function provides()
