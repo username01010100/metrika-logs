@@ -75,10 +75,10 @@ class DownloadRequest extends RequestCore implements Request
     {
         return str_replace(
             '{partNumber}',
-            self::$partNumber,
+            (string) self::$partNumber,
             str_replace(
                 '{requestId}',
-                self::$requestId,
+                (string) self::$requestId,
                 parent::getAddress()
             )
         );
