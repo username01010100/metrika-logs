@@ -51,6 +51,6 @@ class InformationRequest extends RequestCore implements Request
      */
     public function getAddress(): string
     {
-        return str_replace('{requestId}', self::$requestId, parent::getAddress());
+        return str_replace('{requestId}', (string) self::$requestId, parent::getAddress());
     }
 }
